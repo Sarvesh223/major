@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { MdSunnySnowing } from 'react-icons/md'
 
-const IMAGE_BANNER = 'https://cdn.pixabay.com/photo/2016/11/14/04/14/monks-1822569_1280.jpg'
+const IMAGE_BANNER = 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
 const Banner: React.FC<{ mine?: boolean }> = ({ mine }) => {
   return (
     <div

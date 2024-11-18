@@ -59,7 +59,7 @@ contract DappFund is Ownable, AccessControl {
     require(bytes(description).length > 0, 'Description cannot be empty');
     require(bytes(profile).length > 0, 'Profile cannot be empty');
     require(bytes(image).length > 0, 'Image cannot be empty');
-    require(amount > 0 ether, 'Amount cannot be zero');
+    require(amount > 0 , 'Amount cannot be zero');
 
     _totalCharities.increment();
     CharityStruct memory charity;

@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\gsarv\\OneDrive\\Desktop\\MAJOR\\charity\\contracts\\DappFund.sol": {
-      "lastModificationDate": 1730265952525,
-      "contentHash": "4603cb2a355a0f3f4983039240c6d6be",
+      "lastModificationDate": 1731951344797,
+      "contentHash": "f1af3f738dc71b40dbbc34aa21198d21",
       "sourceName": "contracts/DappFund.sol",
       "solcConfig": {
         "version": "0.8.17",

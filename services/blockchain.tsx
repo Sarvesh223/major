@@ -15,21 +15,20 @@ let tx: any
 if (typeof window !== 'undefined') ethereum = (window as any).ethereum
 
 const getEthereumContracts = async () => {
-  const accounts = await ethereum?.request?.({ method: 'eth_accounts' })
+  try {
+    const accounts = await ethereum?.request?.({ method: 'eth_accounts' })
+    console.log('Available accounts:', accounts)
 
-  if (accounts?.length > 0) {
-    const provider = new ethers.BrowserProvider(ethereum)
+    const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_RPC_URL)
+    console.log('RPC URL:', process.env.NEXT_PUBLIC_RPC_URL)
+
     const signer = await provider.getSigner()
     const contracts = new ethers.Contract(address.dappFundContract, dappFundAbi.abi, signer)
-
+    
     return contracts
-  } else {
-    const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_RPC_URL)
-    const wallet = ethers.Wallet.createRandom()
-    const signer = wallet.connect(provider)
-    const contracts = new ethers.Contract(address.dappFundContract, dappFundAbi.abi, signer)
-
-    return contracts
+  } catch (error) {
+    console.error('Contract connection error:', error)
+    throw error
   }
 }
 
@@ -40,9 +39,15 @@ const getAdmin = async (): Promise<string> => {
 }
 
 const getCharities = async (): Promise<CharityStruct[]> => {
-  const contract = await getEthereumContracts()
-  const charities = await contract.getCharities()
-  return structuredCharities(charities)
+  try {
+    const contract = await getEthereumContracts()
+    const charities = await contract.getCharities()
+    console.log('Raw charities:', charities)
+    return structuredCharities(charities)
+  } catch (error) {
+    console.error('Fetching charities error:', error)
+    return []
+  }
 }
 
 const getMyCharities = async (): Promise<CharityStruct[]> => {
